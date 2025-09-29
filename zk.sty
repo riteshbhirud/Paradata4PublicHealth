@@ -1,0 +1,95 @@
+%--------------------------------------------------
+% Overall Package Configuration
+%--------------------------------------------------
+
+% Ensure that the LaTeX version is at least LaTeX2e 
+\NeedsTeXFormat{LaTeX2e}  
+
+% Declare this file as a package named 'zk'
+\ProvidesPackage{zk}        
+
+%--------------------------------------------------
+% Input Encoding and Language
+%--------------------------------------------------
+
+% Allow UTF-8 input in source files
+% NOTE: Must be loaded before `csquotes`
+\usepackage[utf8]{inputenc} 
+
+% Set document language to English
+\usepackage[english]{babel} 
+
+%--------------------------------------------------
+% Quotation Formatting
+%--------------------------------------------------
+% Fancy quoting capabilities
+\usepackage{csquotes}       
+
+% Make `\displayquote` use italics
+% DEPENDS: csquotes
+\renewcommand{\mkbegdispquote}[2]{\itshape} 
+
+%--------------------------------------------------
+% Bibliography setup
+%--------------------------------------------------
+% Bibliography management with bibtex
+\usepackage[
+  backend=biber,  % Use Biber backend
+  style=ieee,     % Set IEEE citation style
+  sorting=ynt     % Sort by year, name, title
+]{biblatex}
+
+% Add main bibliography file
+% DEPENDS: biblatex
+\addbibresource{references.bib} 
+
+%--------------------------------------------------
+% Custom Functions
+%--------------------------------------------------
+% Needed for optional function arguments
+\usepackage{xparse}
+
+%--------------------------------------------------
+% New Packages and Configurations
+%--------------------------------------------------
+\usepackage{xr-hyper}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{catchfilebetweentags}
+
+\makeatletter
+\newcommand\currentdoc[1]{\edef\@currentlabel{#1}\label{#1}}
+\makeatother
+
+\usepackage{minted}
+
+\setminted{%
+xleftmargin=10pt, %
+linenos, %
+breaklines, %
+escapeinside=||, %
+mathescape=true, %
+numbersep=3pt, %
+gobble=2, %
+autogobble, %
+frame=lines, %
+fontsize=\scriptsize, %
+framesep=2mm%
+} %
+
+\usepackage{caption}
+\captionsetup{margin=10pt,font=small,labelfont=bf}
+
+\usepackage{tabularx} 
+
+\input{functions}
+
+\endinput 

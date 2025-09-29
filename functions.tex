@@ -1,0 +1,102 @@
+%--------------------------------------------------
+% Function: \subinput
+%
+% Desc:
+%   Inputs the contents of another TeX file and 
+%   temporarily redefines \section to behave as 
+%   \subsection, allowing nested headings in a 
+%   larger document.
+%
+% Arguments:
+%   #1 : Path to the TeX file to input. Must be a 
+%        valid file relative to the current working 
+%        directory.
+%
+% Example:
+%
+% \subinput{my_tex_file}
+%--------------------------------------------------
+\makeatletter
+\newcommand{\subinput}[1]{%
+  \begingroup
+    % Change \section to \subsection
+    \let\section\subsection  
+    \let\subsection\subsubsection  
+    % Input the specified file
+    \input{#1}%               
+  \endgroup
+}
+\makeatother
+
+%--------------------------------------------------
+% Function: \makeheader
+%
+% Desc:
+%   Sets the master-document flag *and* creates a
+%   left-aligned document header with optional
+%   description, title, author, date, table of
+%   contents, and a page break. The title is also
+%   added as a hidden section for referencing.
+%
+% Arguments:
+%   #1 : Optional description text.  Omit to skip.
+%   #2 : Required title.
+%--------------------------------------------------
+\NewDocumentCommand{\makeheader}{ o m }{%
+  \masteron % <-- set the master flag
+  % Hidden section for the title (TOC + label)
+  \section*{#2}%
+  \label{first}%
+  % Large bold title text
+  \begin{flushleft}
+    \vspace{0.75em}%
+    \textbf{Author:} Jacob S. Zelko\par% Author
+    \textbf{Date: }\today\par% Date
+    \IfNoValueF{#1}{%
+      \small\textbf{Description:}~#1\par
+    }%
+  \end{flushleft}
+  \tableofcontents
+  \clearpage
+}
+
+
+
+% --------------------------------------------------
+% Master/child detection
+% --------------------------------------------------
+\newif\ifmasterdoc       % create a boolean we can set in the parent
+\newcommand{\masteron}{\masterdoctrue}
+\newcommand{\masteroff}{\masterdocfalse}
+
+% --------------------------------------------------
+% Convenience macro to print bibliography only
+% when *not* building the master document.
+% --------------------------------------------------
+\newcommand{\printbib}{%
+  \ifmasterdoc\else
+    \printbibliography
+  \fi
+}
+
+%--------------------------------------------------
+% Function: \keywords
+%
+% Desc:
+%   Prints a “Keywords” section flush-left, using
+%   the same font/size as a \section heading, and
+%   adds an entry to the table of contents.
+%
+% Arguments:
+%   #1 : A comma-separated list or free string of
+%        keywords to display.
+%
+% Example:
+%   \keywords{data science, category theory, OMOP}
+%--------------------------------------------------
+\newcommand{\keywords}[1]{%
+  % Left-aligned block styled like a section header
+  \begin{flushleft}
+    {\normalfont\bfseries Keywords:} {\normalfont #1}\par
+  \end{flushleft}%
+}
