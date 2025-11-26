@@ -1,31 +1,40 @@
-> NOTE: Credit to Shuntaro Yada for creating the original LaTeX template we are using here for this paper. 
-> Link: https://github.com/shuntaroy/jmir-latex-pandoc
+# Paradata4PublicHealth
 
-# JMIR unofficial LaTeX template for Pandoc's Word conversion
+This code base is using the [Julia Language](https://julialang.org/) and
+[DrWatson](https://juliadynamics.github.io/DrWatson.jl/stable/)
+to make a reproducible scientific project named
+> Paradata4PublicHealth
 
-This gives a LaTeX template for the JMIR journal, where only the Word template is officially available.
-Although this LaTeX template cannot replace the official Word template, it can be used to convert a manuscript to Word format.
+It is authored by Jacob S. Zelko, Kosuri Lakshmi Indu, Nathaniel Osgood, Ritesh Bhirud, Affan Shoukat.
 
-## Usage
+To (locally) reproduce this project, do the following:
 
-First, draft your manuscript with `./tex/main.tex` as the main file in your favourite way (local latex env, or Overleaf, etc.). 
+0. Download this code base. Notice that raw data are typically not included in the
+   git-history and may need to be downloaded independently.
+1. Open a Julia console and do:
+   ```
+   julia> using Pkg
+   julia> Pkg.add("DrWatson") # install globally, for using `quickactivate`
+   julia> Pkg.activate("path/to/this/project")
+   julia> Pkg.instantiate()
+   ```
 
-After you finishing the draft, convert the manuscript to Word format with the following commands:
+This will install all necessary packages for you to be able to run the scripts and
+everything should work out of the box, including correctly finding local paths.
 
-```sh
-$ pandoc -C --bibliography jmir.bib --csl ./word/american-medical-association.csl --reference-doc ./word/custom-reference.docx main.tex -t docx -o ./word/main.docx
+You may notice that most scripts start with the commands:
+```julia
+using DrWatson
+@quickactivate "Paradata4PublicHealth"
 ```
+which auto-activate the project and enable local path handling from DrWatson.
 
-You will obtain `main.docx` under the `./tex` folder.
 
-Finally, please manually fix the `main.docx` to follow the `./word/InstructionsForAuthorsOfJMIR.docx`.
 
-Some of the manual fixes would be:
-- Add table/figure labels
-- Modify the table format and style
-- Reformat the references
+Some documentation has been set up for this project. It can be viewed by
+running the file `docs/make.jl`, and then launching the generated file
+`docs/build/index.html`.
+Alternatively, the documentation may be already hosted online.
+If this is the case it should be at:
 
-## Notes
-
-The LaTeX template is designed to be looking similar enough to the official Word template, meaning it's not a perfect replication.
-Please use it only for the drafting.
+https://TheCedarPrince.github.io/Paradata4PublicHealth/dev/
