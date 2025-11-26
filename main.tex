@@ -1,3 +1,50 @@
+% Paper outline
+
+% \subsection{Behavior Encoding}
+
+% \begin{itemize}
+%     \item Different iteration of pattern of life framework
+%     \item Tailoring to outcome of interest
+%     \begin{itemize}
+%         \item Applies to data as well
+%     \end{itemize}
+% \end{itemize}
+
+% \section{Background}
+
+% \subsection{What Is Paradata?}
+
+% \subsection{Historical Examples of Paradata}
+
+% \subsection{Why Care about Paradata?}
+
+% \section{Select Public Health Examples}
+
+% Figure goes here
+
+% \subsection{Example 1}
+
+% \subsection{Example 2}
+
+% \subsection{Example 3}
+
+% \section{Sources of Paradata within Public Health Modeling}
+
+% Encoding explicitly relationships between behavior encoding and methodologies
+
+% Effectively our "approach" section with bringing paradata into focus with it rooted back into the examples we have chosen
+
+% \section{Discussion}
+
+% \subsection{Towards Unified Public Health Contexts}
+
+% \subsection{Why Care about Public Health Paradata? }
+
+% \subsection{Mathematical Formalization of Paradata Relationships}
+
+% \section{Conclusion}
+
+
 % lazy JMIR replication
 % This must be compiled to Word via Pandoc
 \documentclass[12pt]{article}
@@ -31,114 +78,245 @@
 \usepackage{amsmath}
 \usepackage{multirow}
 
+\usepackage[
+  backend=biber,  % Use Biber backend
+  style=ama,     % Set AMA citation style
+  sorting=ynt     % Sort by year, name, title
+]{biblatex}
+
+% Add main bibliography file
+% DEPENDS: biblatex
+\addbibresource{references.bib} 
+
 \begin{document}
 
 % \subsection{Original Paper}
 
-% Author 1$^1$, PhD;
-% Author 2$^1$, PhD
-
-% $^1$Nara Institute of Science and Technology, Japan
+Kosuri Lakshmi Indu;
+Affan Shoukat
+Jacob S. Zelko 
+Nathaniel Osgood
+Ritesh Bhirud
 
 % This corresponds to the title of the paper
-\section{Natural Language Processing on Few/Low-Resource Realistic Medical Documents: Findings in the Real-MedNLP Shared Task}
+\section{Perspectives: Sources of Paradata in Public Health Research}
 
 \subsection{Abstract}
-\textbf{Background:} 
-Your research background.
-
-\textbf{Objective:} 
-Objective of your research.
-
-\textbf{Methods:} 
-Methods of your research.
-
-\textbf{Results:} 
-Great results.
-
-\textbf{Conclusions:} 
-Fantastic conclusions.
 
 \textbf{Keywords:}
-NLP;
-Medicine
+Paradata;
+Methods
 
 % === Body text Starts ===
 \subsection{Introduction}  % Level 1 Heading
+[edits by affan, do not modify] Modern digital technologies have reshaped how health data are collected and expanded the kinds of information researchers can access. While metadata describes the structure and attributes of data, paradata refers to process of how information or data comes to be including the decisions, tools, and procedures involved in its creation and use. 
 
-Why and how important of your research is here. 
+%%%%%%%%%%%%%%%%%
+% NOTE FOR AFFAN
+%%%%%%%%%%%%%%%%%
+% 
+% @Affan, Jacob here; I'd highly suggest taking a look at this discussion as it gives more guidance on what we are looking for in the introduction: https://cedarledge.zulipchat.com/#narrow/channel/527066-Public-Health-Paradata-Paper/topic/Paper.20Drafting/near/553486082
+% 
+% Also, could you please turn on OverLeaf reviewing mode while you work/edit so we can see changes more clearly? Indu is helping with the revisions/editing.
+% 
+% Thanks!
 
-Note that you cannot use footnotes (\verb|\footnote|) at all in JMIR.
+Paradata can be most simply defined as ``data about processes.'' \cite{huvila_perspectives_2024}
+Paradata's goal is focused on capturing how information or data comes to be including the decisions, tools, and procedures involved in its creation and use. Conceptually, paradata serves as a means to surface the implicit, undocumented or tribal knowledge within the data workflows. It functions as a "language" for communicating how things are done across research teams, helping to improve transparency, reproducibility and contextual understanding of data provenance.
 
-URLs should not be used in the text. Cite them.
+The InterPARES Project offers a more formal definition that expands this understanding, stating it is \cite{davet_tracking_2022}: ``Information about procedures and tools used to create and process information resources, along with information about the persons carrying out those procedures.''
 
-\subsection{Materials}  % Level 1 Heading
+Defining paradata precisely can be difficult.
+It is often left undocumented or remains implicit within data sources \cite{borjesson_re-purposing_2022}, \cite{huvila_documenting_2021}. 
+This can partially be due to paradata itself being a vague concept where there is a "certain amount of chaos" in the management and defining of paradata \cite{cohen_paradata_2024}.
 
-% If you use level2-headings, you are not allowed to write text here, i.e. in between the (sub)headings.
+Moreover, adding to the confusion is how paradata as a concept often overlaps with metadata. 
+While metadata is typically defined as “data about data”, describing the structure, content or context of a dataset, paradata is analogous in that it also provides contextual insight but it centers on the processes and decisions underlying data creation and transformation.
+The distinction lies in focus: metadata describes what the data is, whereas paradata reveals how it came to be.  
+Because of which, simpler definitions such as "data about processes" can help clarify its purpose, even if they sacrifice some level of precision, contributing to the ongoing challenges of defining paradata precisely.
 
-\subsubsection{Corpus}  % Level 2 Heading
+\subsection{Background}
 
-% No text here too, if you use level3-headings.
+\subsubsection{Historical Background}
 
-\paragraph{Social Media corpus}  % Level 3 Heading
+Paradata emerged during the 1990s and early 2000s within the fields of survey instrument design and library and information science. 
+In these contexts, it was initially used to capture response times, keystrokes, mouse movements and interviewer effects in survey methodologies \cite{oconnor_secondary_2017},\cite{schenk_paradata_2024}.
 
-No further heading levels available in JMIR.
+Over time, the concept of paradata evolved beyond these early applications. It expanded from qualitative and survey-based data to include quantitative and computational contexts, such as exploratory data analysis, software and analytical workflows, and the documentation of research procedures and project evolution \cite{huvila_perspectives_2024}.
 
-Organise your text inside up to 3 levels of headings.
+\subsubsection{Purpose of Paradata}
 
-\paragraph{EHR corpus}  % Level 3 Heading
+Paradata draws attention to the invisible knowledge of processes. \cite{prusak_where_2001} It makes one aware of the history and future of information and how that information came into existence. It also aids in surfacing and understanding processes while highlighting the invisible conscious or unconscious decisions involved within them. In other words, paradata makes tacit knowledge (i.e., practices) about a process a "known unknown" \cite{huggett_capturing_2020}.
 
-\subsubsection{Dictionary}  % Level 2 Heading
+While paradata is often described in technical terms, processes themselves are sociotechnical in nature. They come into existence at the intersection of multiple factors built through both physical and digital architectures and shaped by the needs and actions of people and organizations \cite{bowker_sorting_2000},\cite{dourish_stuff_2022},\cite{hine_databases_2006}. In this way, paradata serves as a tool for reflection on a process's reliability, validity, and reproducibility across contexts, while drawing attention to the tacit decisions and procedural nuances that influence how data and results come to be.
 
-\subsubsection{Data Availability} % Level 2 Heading
 
-Our data will be available at ...
+\subsubsection{Types of Paradata}
 
-\subsection{Methods}
+Due to the complex ways in which paradata can arise, a particular process may require drawing on more than one type of paradata simultaneously. \cite{huvila_perspectives_2024}
+As an example, four types of paradata, with associated slogans, are as follows:
 
-\begin{itemize}  % substitute for `description' environment
-    \item \textbf{Item A} Today
-    \item \textbf{Item B} Tomorrow
+\begin{enumerate}
+    \item \textbf{Scope Paradata: What Does the Data Cover}\\
+    Scope paradata addresses information needs relevant to data reuse. It describes the extent and limitations of available data by highlighting what is included and what is excluded \cite{huvila_perspectives_2024}.
+    For example, it may specify whether the dataset captures data from all patient populations or focuses on a subset such as outpatient clinics or a particular disease registry.
+    
+    \item \textbf{Provenance Paradata: Where the data comes from}\\
+    Provenance paradata focuses on the origins of data. It captures disciplinary and temporal contexts, epistemological culture, and the rationale behind data generation. It also reflects the historical and disciplinary practices that shape how research materials were collected, interpreted and understood \cite{huvila_perspectives_2024}.
+    This paradata could document how clinical data were sourced from electronic health records, patient surveys or registries and under what institutional or ethical frameworks they were generated.
+    
+    \item \textbf{Methods Paradata: How the data was created} \\
+    Methods paradata explores the procedures involved in data generation. It encompasses research methods, information on techniques, and the decision-making processes that shape how data is collected and analyzed \cite{huvila_perspectives_2024}.
+    
+    \item \textbf{Knowledge Organization and Representation Paradata: How the data is structured and communicated}\\
+    Knowledge organization and representation paradata concerns how data is structured, categorized, and communicated. It provides insights into the frameworks and systems that shape the data's meaning and usability, including standards such as FHIR, OMOP, and Sentinel commonly used across health data interoperability \cite{huvila_perspectives_2024}.
+\end{enumerate}
+
+\subsubsection{Survey Instruments}
+Within survey methodologies, paradata has proven particularly valuable for capturing behavioral  and interaction data. Information such as mouse movement patterns, keystroke response times, and navigation behaviors can be recorded during survey administration \cite{fahmy2017using}. These forms of paradata have even been used as the basis for machine-learning-based predictive analyses to assess respondent difficulty and detect potential data quality issues \cite{fernandez2020predicting}.
+
+\subsubsection{Databases}
+In the context of databases and data management systems, paradata plays a crucial role in preserving institutional knowledge. As Rayburn and Thomer note, the absence of process documentation can leave collection managers with "the unenviable task of reverse engineering a database's structure, contents, and data entry workflows for the next generation" \cite{rayburn2024reconstructing}. Even once reverse engineered, not knowing the reasons underlying database design decisions makes database usage difficult. Paradata could potentially facilitate database migrations and updates between schema versions by documenting the rationale behind structural decisions.
+
+
+\section{Guided Examples of Where Paradata Arises in Public Health Research }
+\subsection{Public Health Modeling}
+            
+In general, dynamical modeling in public health practice (e.g. agent-based modeling, ordinary differential equation modeling, etc.) cannot be isolated from its context.
+Research artifacts such as modeling assumptions, model versions, and implementation all, whether explicitly or implicitly used or created, contain information crucial to understand the model outputs and decisions derived from them.
+In this way paradata's role in public health modeling can provide an audit trail and means to make clear the myriad ways a result or recommendation was formed.
+
+With this framing, we consider the modeling work done in \citetitle{tian_evaluating_2013}  by \citeauthor{tian_evaluating_2013} as a canonical example of where paradata can arise and how valuable it is in public health modeling contexts.  \cite{tian_evaluating_2013}. 
+In this work, the authors partnered with the Saskatchewan Tuberculosis Control Program to investigate how to supplement and support their efforts in contract tracing of tuberculosis via the development of an individual-based agent based model.
+This agent based model of tuberculosis contact tracing within Saskatchewan sought to capture dynamics related to loss to follow-up, prioritization schemes, and timeliness of contact tracing.
+Within the process of developing this model, several decisions were made around choice of network topology (scale-free vs. random), time delay distributions, loss-to-follow-up at each stage, and how contacts were actually identified and prioritized.
+At each of these decision boundaries, paradata is being generated and as the model compares different intervention scenarios (prioritization schemes, faster tracing, etc.), any conclusions derived from this modeling process depend entirely on what the implicit or explicit modeling assumptions were.
+As documentation is lacking in this paper about modeling choices such as how delay distributions were estimated and why was a scale-free network selected, replicating or validating the work presented here could become exceptionally challenging.
+
+In discussion with authors of this paper, several aspects of the modeling decisions made were elucidated and made apparent the necessity for meaningful paradata encoding.
+In the course of conversation, it was found that additional, and ultimately unnecessary, modeling had been done over the span of this work due to a critical lapse in communication.
+As the authors began to compare versions of the model to historical tuberculosis contact tracing, they had noticed the model was not robust enough to account for some years that had massive spikes of tuberculosis cases.
+It was discovered after discussion with Saskatchewan Tuberculosis Control Program leadership that, due to an undocumented change in provincial definitions of tuberculosis for the years in question, the counts of tuberculosis were artificially inflated.
+Compared to the documented definition of tuberculosis available, it had appeared that a massive spike in cases had appeared.
+
+In this example, no amount of time series modeling could adequately relay this information to investigators.
+To ameliorate such modeling dilemmas, ad hoc conversations or chance observations across strong investigator social networks were crucial in continuing these efforts. 
+To further underscore the need of regularized and standardized data in the language of paradata, it was later found many of these investigator social networks atrophied.
+Individuals involved with contact tracing went on to other jobs taking with them this vital tacit knowledge resulting in a loss of institutional memory.
+By encoding such knowledge as paradata, future research scenarios, such as in this example, could lead to more timely, effective, and replicable modeling.
+
+% Ritesh's expansion begin%
+
+\subsubsection{The Contact Tracing Investigation Process}
+
+The operational contact tracing process documented in Figure 1 of \citeauthor{tian_evaluating_2013}'s work provides specific quantitative evidence of the challenges faced by Saskatchewan TB Control.
+The process begins with identification of an infectious TB case, followed by interviewing to identify contacts, summoning contacts for examination, conducting skin tests, and providing clinical review and treatment where appropriate.
+Saskatchewan TB Control set an operational target of examining 95\% of contacts within 30 days of case identification while maintaining low loss to follow-up.
+However, empirical data revealed only 16\% of contacts were examined within this 30-day window, and loss to follow-up ranged between 30-40\% across the skin test and clinical review stages.
+
+These documented statistics represent critical methods paradata, information about the actual procedures and their effectiveness in practice.
+The modeling work necessarily depends on these rates: the simulation incorporates the observed delay distributions, loss-to-follow-up percentages at each stage, and the queue of contacts awaiting tracing.
+Without accurate documentation of these process characteristics, the model's ability to evaluate intervention scenarios would be severely compromised.
+
+\subsubsection{Paradata Categories in the Modeling Process}
+
+Following \citeauthor{huvilaPerspectivesParadataResearch2024}'s taxonomy, we can categorize the paradata arising in this modeling effort:
+
+\textbf{Scope Paradata:} The model represents a hypothetical Aboriginal community of 15,000 individuals, with First Nations individuals constituting 90\% of the population.
+The model explicitly excludes gender-specific transmission patterns and detailed family structures, focusing instead on age-stratified and ethnicity-stratified dynamics.
+The temporal scope spans 1975-2060, with scenario interventions beginning in 2010.
+
+\textbf{Provenance Paradata:} Data sources include the Saskatchewan TB Control database, Saskatchewan Anti-TB League reports (1975-2005), vital statistics for Saskatchewan's population, and contact tracing investigation records.
+The empirical network structure observations drew on investigations in neighboring Manitoba Aboriginal communities, which suggested scale-free properties in TB case-contact networks.
+
+\textbf{Methods Paradata:} The modeling team selected an agent-based modeling approach over compartmental system dynamics to better capture individual contact networks, history dependence, and heterogeneous risk factors.
+The underlying contact network was generated using the Barabási-Albert algorithm to create a scale-free network structure.
+Parameters including mixing coefficients (0.9448 for ethnicity, 0.5591 for age), transmission rates, and progression probabilities were estimated through iterative multidimensional Powell optimization against historical time series.
+The model was implemented in AnyLogic 6.2.2, running atop a continuous-time discrete event scheduler.
+
+\textbf{Knowledge Organization Paradata:} Health states were structured into 11 distinct stocks representing progression through TB infection and disease: uninfected, BCG vaccinated, high-risk latently infected, low-risk latently infected, TLTBI protected, and various active TB states disaggregated by infectiousness, diagnosis, and treatment status.
+Ethnicity was categorized as First Nations (Registered Indians) versus other Saskatchewan residents.
+Age was stratified into 5-year bins from 0-4 through 75-79 years.
+
+\subsubsection{Consequences of Inadequate Paradata Documentation}
+
+The incomplete documentation of certain modeling decisions created barriers to replication and validation.
+For instance, while the paper notes the use of a scale-free network structure, the specific rationale for this choice over alternative network topologies (random, small-world, ring lattice) was not fully articulated in the publication.
+Similarly, the estimation procedures for delay distributions, such as time from case identification to contact notification, were not documented with sufficient detail for independent reproduction.
+
+These gaps in paradata documentation have practical consequences for the utility of modeling results.
+When public health decision-makers consider implementing prioritization schemes based on the model's findings, they need to understand the sensitivity of those recommendations to underlying assumptions.
+If the scale-free network assumption substantially affects the relative benefits of age-based versus ethnicity-based prioritization, but this assumption's justification and robustness are undocumented, policymakers lack critical context for their decisions.
+
+To illustrate the quantitative impact of paradata documentation gaps, we propose three computational examples that will demonstrate how undocumented assumptions affect model conclusions.
+These examples will use simplified implementations in Julia to show the consequences of poor paradata management in three specific scenarios relevant to the contact tracing model.
+% Ritesh's expansion end%
+
+\section{Discussions}    
+
+\subsection{Ethical Dimensions and Concerns}
+
+\subsubsection{Emerging Ethical Frameworks}
+As concepts related to paradata continue to become more concrete, distinct schools of thought have emerged regarding its ethical implications. Two particularly notable perspectives have been identified \cite{mickel2023cultural}:
+
+\textbf{Paradata as Transparency and Accuracy:} This framework emphasizes documenting every step of a process for reproducibility and scientific rigor, viewing clean data and accuracy as ethical imperatives in themselves.
+
+\textbf{Paradata as Justice and Equity:} This perspective considers paradata in relation to the connections between science and social justice, balancing transparency with ethical sensitivity, privacy concerns, and broader social implications.
+
+These two frameworks are not mutually exclusive; rather, they are strongly compatible and complementary approaches to thinking about paradata's role in responsible research practice.
+
+\subsection{Potential Misuses}
+            
+Despite its benefits, paradata can be misused in ways that undermine research integrity \cite{huvila_perspectives_2024}. Potential misuses include:
+
+\begin{itemize}
+    \item \textbf{Selective documentation:} Conveniently omitting or misrepresenting actual process information that went into making particular decisions or shaping a process overall.
+    \item \textbf{Complexity justification:} Attributing complexity in a process's paradata as "necessary" when the process may simply be poorly designed or implemented.
+    \item \textbf{Narrative control:} Manipulating the perception of processes to discount, discredit, or gain competitive advantages over alternative approaches, even when those alternatives may be equally valid or superior.
 \end{itemize}
 
-\subsubsection{Ethical considerations}
 
-% A template if your work is not human subject research
-This study did not require participants to be involved in any physical or mental intervention. 
-As this research did not use personally identifiable information, it was exempt from institutional review board approval in accordance with the Ethical Guidelines for Medical and Health Research Involving Human Subjects stipulated by the Japanese national government.
+\subsection{Cautionary Considerations}
+While standardization offers benefits, certain pitfalls must be avoided \cite{huvila_perspectives_2024}:
 
-\subsection{Results}
+\begin{itemize}
+    \item \textbf{Over-systematization:} Imposing rigid frameworks that dictate how knowledge should or must be represented, potentially stifling innovation and context-specific approaches.
+    \item \textbf{Excessive documentation:} Creating bureaucratic burden through overdocumentation or forced templates that assume all aspects of every process can or must be documented.
+    \item \textbf{Purposeless cleaning:} Engaging in data preparation or cleaning for its own sake without clear benefit to understanding or usability.
+\end{itemize}
 
-Tables and figures. No interpretations of the results here.
+It has often been noted that while recording and managing paradata can be useful, it remains conceptually difficult to define and intensive to maintain \cite{cohen_paradata_2024}. This difficulty stems from paradata's strongly interdisciplinary nature, emerging at the "interface between practices, processes, and their related entities" \cite{huvila_perspectives_2024}.
 
-\subsection{Discussions}
+\section{Future work}
 
-\subsubsection{Conclusions}
+\subsection{Standardization and Homogenization}
+One promising direction for paradata development involves creating common structures and vocabularies for process documentation \cite{huvila_perspectives_2024}. This includes:
 
-\subsubsection{Future work}
+\begin{itemize}
+    \item Homogenization for known, established uses
+    \item Systematization of basic data structures with options to extend them for specific contexts
+    \item Development of controlled vocabularies, including thesauri, terminologies, and word lists
+    \item Documentation of knowledge organization and knowledge representation practices
+    \item Description of tacit knowledge regarding "how things are done" within specific domains
+    \item Explicit documentation of anomalies and exceptions to standard processes
+\end{itemize}
+
+\section{Conclusions}
 
 % === Body text Ends ===
 
-\subsubsection{Acknowledgements}  % somehow the acknowledgements section is "level 2" in JMIR
+\section{Acknowledgements}  % somehow the acknowledgements section is "level 2" in JMIR
 
-This work was supported by JST AIP Trilateral AI Research Grant Number JPMJCR20G9, and JST AIP-PRISM Grant Number JPMJCR18Y1, Japan.
 
 % Put the author contributions here
 
-\subsubsection{Conflicts of Interest}
+\section{Conflicts of Interest}
 Nothing to disclose.
 
-\subsubsection{Abbreviations}  % You need to manually change the paragraph style to "Normal" in Word
-
-NLP: Natural Language Processing
-
-NER: Named Entity Recognition
+\section{Abbreviations}  % You need to manually change the paragraph style to "Normal" in Word
 
 % \subsection{Multimedia Appendix}
 
-\subsection{References}
-
-\bibliographystyle{ama}
-\bibliography{jmir}
+\section{References}
 
 \end{document}
